@@ -26,6 +26,11 @@ class User
      */
     private $password;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Subscription", inversedBy="users")
+     */
+    private $related_subscription;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -51,6 +56,18 @@ class User
     public function setPassword(string $password): self
     {
         $this->password = $password;
+
+        return $this;
+    }
+
+    public function getRelatedSubscription(): ?Subscription
+    {
+        return $this->related_subscription;
+    }
+
+    public function setRelatedSubscription(?Subscription $related_subscription): self
+    {
+        $this->related_subscription = $related_subscription;
 
         return $this;
     }
